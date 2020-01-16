@@ -65,22 +65,16 @@ def getempty(bd):
 def solve(bd):
     global backtracks
     i, j = getempty(bd)
-    print("call to get empty", i, j)
     if i == -1:
         return True
     for trynum in range(1, 10):
         if noviolations(bd, i, j, trynum):
-            print("values of i, j, num are", i, j, bd[i][j])
             bd[i][j] = trynum
-            print("after insertion values of i, j, num are", i, j, bd[i][j])
             if solve(bd):
                 return True
             #reaches here when we looped through all nums and there was no valid number
-            print("before backtracking index and val is", i, j, bd[i][j])
             backtracks += 1
             bd[i][j] = 0
-            print("after backtracking index and val is", i, j, bd[i][j])
-    print("false when", i, j, bd[i][j])
     return False
 #for first cell where no values are valid(no value was actually set so it will remain zero)
 #return false
